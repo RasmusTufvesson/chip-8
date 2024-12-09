@@ -1,5 +1,5 @@
 # Chip-8
-This is a small chip-8 interpreter/emulator that is written in rust! The window and input handling is done with SDL2.
+This is a small chip-8 interpreter/emulator that is written in rust! The window and input handling is done with SDL2. It was written by following [this guide](https://tobiasvl.github.io/blog/write-a-chip-8-emulator/).
 
 ## Issues
 * Sound does not work
