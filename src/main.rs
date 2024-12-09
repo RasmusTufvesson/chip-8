@@ -1,4 +1,4 @@
-use std::{fs, time::{Duration, Instant}};
+use std::{fs, io::{stdin, stdout, Write}, time::{Duration, Instant}};
 use rand::{rngs::ThreadRng, thread_rng, Rng};
 use sdl2::{event::Event, keyboard::Scancode, pixels::Color, rect::Rect};
 
@@ -36,7 +36,18 @@ const BLACK: Color = Color::RGB(0, 0, 0);
 const WHITE: Color = Color::RGB(255, 255, 255);
 
 fn main() {
-    let program = fs::read(r"programs\test_opcode.ch8").unwrap();
+    let mut s = String::new();
+    print!("Enter program to run: ");
+    stdout().flush().unwrap();
+    stdin().read_line(&mut s).unwrap();
+    if let Some('\n') = s.chars().next_back() {
+        s.pop();
+    }
+    if let Some('\r') = s.chars().next_back() {
+        s.pop();
+    }
+
+    let program = fs::read(&s).unwrap();
 
     let mut interpreter = Interpreter {
         ram: RAM::new(program.as_slice()),
